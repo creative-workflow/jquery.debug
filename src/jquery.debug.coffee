@@ -1,25 +1,26 @@
 root = exports ? this
 
 class root.JqueryDebug
-  constructor: (options) ->
-    @options =
-      cookieName: 'debug'
-      urlParam: 'debug'
-      developmentHosts: [
-        '127.0'
-        '192.168'
-        'localhost'
-      ]
-    @config(options)
-    @href    = window.location.href
-    @console = console
-    @autodetectDebugModeAndSet()
+  options =
+    cookieName: 'debug'
+    urlParam: 'debug'
+    developmentHosts: [
+      '127.0'
+      '192.168'
+      'localhost'
+    ]
+
+  constructor: (@options) ->
+    @config jQuery.extend(options, @options)
+    @_href    = window.location.href
+    @_console = console
+    @_autodetectDebugModeAndSet()
 
   config: (options) =>
-    @options = $.extend(@options, options) if options
+    @options = jQuery.extend(@options, options) if options
     @options
 
-  autodetectDebugModeAndSet: =>
+  _autodetectDebugModeAndSet: =>
     if jQuery.url("?#{@options.urlParam}") in ['0', '1', 'true', 'false']
       @setDebugMode jQuery.url("?#{@options.urlParam}")
       return
@@ -45,9 +46,9 @@ class root.JqueryDebug
     jQuery.cookie(@options.cookieName, @debugEnabled)
 
   isDevelopment: =>
-    return true if @href.indexOf('file://') > -1
+    return true if @_href.indexOf('file://') > -1
     for host in @options.developmentHosts
-      return true if @href.indexOf(host) > -1
+      return true if @_href.indexOf(host) > -1
     false
 
   isProduction: =>
@@ -56,7 +57,7 @@ class root.JqueryDebug
   _log: (type, args)=>
     return if !@debugEnabled
     try
-      @console[type].apply @console, args
+      @_console[type].apply @_console, args
     catch err
       @alert args.join(' ')
 

@@ -11,7 +11,7 @@
       fn = function(actualState) {
         return it("recognizes url param " + actualState, function() {
           spyOn($, "url").and.returnValue("" + actualState);
-          $.debug.autodetectDebugModeAndSet();
+          $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).not.toBeTruthy();
         });
       };
@@ -23,7 +23,7 @@
       fn1 = function(actualState) {
         return it("recognizes url param " + actualState, function() {
           spyOn($, "url").and.returnValue("" + actualState);
-          $.debug.autodetectDebugModeAndSet();
+          $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).toBeTruthy();
         });
       };
@@ -35,7 +35,7 @@
       fn2 = function(actualState) {
         return it("recognizes cookie param " + actualState, function() {
           spyOn($, "cookie").and.returnValue("" + actualState);
-          $.debug.autodetectDebugModeAndSet();
+          $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).not.toBeTruthy();
         });
       };
@@ -47,7 +47,7 @@
       fn3 = function(actualState) {
         return it("recognizes cookie param " + actualState, function() {
           spyOn($, "cookie").and.returnValue("" + actualState);
-          $.debug.autodetectDebugModeAndSet();
+          $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).toBeTruthy();
         });
       };
@@ -58,8 +58,8 @@
       ref4 = ['localhost', '127.0.0.1', '192.168.0.2', 'file://my.html'];
       fn4 = function(actualHost) {
         return it("recognizes host " + actualHost + " as development host", function() {
-          $.debug.instance.href = actualHost + "/foo/bar";
-          $.debug.autodetectDebugModeAndSet();
+          $.debug.instance._href = actualHost + "/foo/bar";
+          $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).toBeTruthy();
         });
       };
@@ -68,23 +68,23 @@
         fn4(host);
       }
       it("recognizes host www.github.com as production host", function() {
-        $.debug.instance.href = "www.github.com/foo/bar";
-        $.debug.autodetectDebugModeAndSet();
+        $.debug.instance._href = "www.github.com/foo/bar";
+        $.debug._autodetectDebugModeAndSet();
         return expect($.debug()).not.toBeTruthy();
       });
       it("logs to console in debug mode", function() {
-        spyOn($.debug.instance.console, "log").and.callThrough();
+        spyOn($.debug.instance._console, "log").and.callThrough();
         $.debug(true);
         expect($.debug()).toBeTruthy();
         $.debug.log('msg');
-        return expect($.debug.instance.console.log).toHaveBeenCalled();
+        return expect($.debug.instance._console.log).toHaveBeenCalled();
       });
       return it("doesnt log to console in debug mode", function() {
-        spyOn($.debug.instance.console, "log").and.callThrough();
+        spyOn($.debug.instance._console, "log").and.callThrough();
         $.debug(false);
         expect($.debug()).not.toBeTruthy();
         $.debug.log('msg');
-        return expect($.debug.instance.console.log).not.toHaveBeenCalled();
+        return expect($.debug.instance._console.log).not.toHaveBeenCalled();
       });
     });
   });

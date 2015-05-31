@@ -51,12 +51,8 @@ Initialize the plugin.
   * or sets the debug mode if one of `['1', 1, 'true', true, '0', 0, 'false', false]` is given.
   * If no parameter is given it returns the actual debug mode.
 
-
 #### $.debug.config (options)
 Updates the configuration.
-
-#### $.debug.autodetectDebugModeAndSet
-Checks url parameter, cookie value and 'isProduction' to determine if debug mode should be enabled or not. Stores the result inside of a cookie.
 
 #### $.debug.enable
 Enables debug mode.

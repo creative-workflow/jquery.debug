@@ -8,7 +8,7 @@ describe 'jquery.debug', ->
       ((actualState)->
         it "recognizes url param #{actualState}", ->
           spyOn($, "url").and.returnValue "#{actualState}"
-          $.debug.autodetectDebugModeAndSet()
+          $.debug._autodetectDebugModeAndSet()
           expect($.debug()).not.toBeTruthy()
       ) state
 
@@ -16,7 +16,7 @@ describe 'jquery.debug', ->
       ((actualState)->
         it "recognizes url param #{actualState}", ->
           spyOn($, "url").and.returnValue "#{actualState}"
-          $.debug.autodetectDebugModeAndSet()
+          $.debug._autodetectDebugModeAndSet()
           expect($.debug()).toBeTruthy()
       ) state
 
@@ -24,7 +24,7 @@ describe 'jquery.debug', ->
       ((actualState)->
         it "recognizes cookie param #{actualState}", ->
           spyOn($, "cookie").and.returnValue "#{actualState}"
-          $.debug.autodetectDebugModeAndSet()
+          $.debug._autodetectDebugModeAndSet()
           expect($.debug()).not.toBeTruthy()
       ) state
 
@@ -32,33 +32,33 @@ describe 'jquery.debug', ->
       ((actualState)->
         it "recognizes cookie param #{actualState}", ->
           spyOn($, "cookie").and.returnValue "#{actualState}"
-          $.debug.autodetectDebugModeAndSet()
+          $.debug._autodetectDebugModeAndSet()
           expect($.debug()).toBeTruthy()
       ) state
 
     for host in ['localhost', '127.0.0.1', '192.168.0.2', 'file://my.html']
       ((actualHost)->
         it "recognizes host #{actualHost} as development host", ->
-          $.debug.instance.href = "#{actualHost}/foo/bar"
-          $.debug.autodetectDebugModeAndSet()
+          $.debug.instance._href = "#{actualHost}/foo/bar"
+          $.debug._autodetectDebugModeAndSet()
           expect($.debug()).toBeTruthy()
       ) host
 
     it "recognizes host www.github.com as production host", ->
-      $.debug.instance.href = "www.github.com/foo/bar"
-      $.debug.autodetectDebugModeAndSet()
+      $.debug.instance._href = "www.github.com/foo/bar"
+      $.debug._autodetectDebugModeAndSet()
       expect($.debug()).not.toBeTruthy()
 
     it "logs to console in debug mode", ->
-      spyOn($.debug.instance.console, "log").and.callThrough()
+      spyOn($.debug.instance._console, "log").and.callThrough()
       $.debug true
       expect($.debug()).toBeTruthy()
       $.debug.log 'msg'
-      expect($.debug.instance.console.log).toHaveBeenCalled()
+      expect($.debug.instance._console.log).toHaveBeenCalled()
 
     it "doesnt log to console in debug mode", ->
-      spyOn($.debug.instance.console, "log").and.callThrough()
+      spyOn($.debug.instance._console, "log").and.callThrough()
       $.debug false
       expect($.debug()).not.toBeTruthy()
       $.debug.log 'msg'
-      expect($.debug.instance.console.log).not.toHaveBeenCalled()
+      expect($.debug.instance._console.log).not.toHaveBeenCalled()

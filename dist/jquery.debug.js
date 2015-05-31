@@ -5,7 +5,16 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.JqueryDebug = (function() {
-    function JqueryDebug(options) {
+    var options;
+
+    options = {
+      cookieName: 'debug',
+      urlParam: 'debug',
+      developmentHosts: ['127.0', '192.168', 'localhost']
+    };
+
+    function JqueryDebug(options1) {
+      this.options = options1;
       this.alert = bind(this.alert, this);
       this.info = bind(this.info, this);
       this.error = bind(this.error, this);
@@ -18,27 +27,22 @@
       this.isEnabled = bind(this.isEnabled, this);
       this.disable = bind(this.disable, this);
       this.enable = bind(this.enable, this);
-      this.autodetectDebugModeAndSet = bind(this.autodetectDebugModeAndSet, this);
+      this._autodetectDebugModeAndSet = bind(this._autodetectDebugModeAndSet, this);
       this.config = bind(this.config, this);
-      this.options = {
-        cookieName: 'debug',
-        urlParam: 'debug',
-        developmentHosts: ['127.0', '192.168', 'localhost']
-      };
-      this.config(options);
-      this.href = window.location.href;
-      this.console = console;
-      this.autodetectDebugModeAndSet();
+      this.config(jQuery.extend(options, this.options));
+      this._href = window.location.href;
+      this._console = console;
+      this._autodetectDebugModeAndSet();
     }
 
     JqueryDebug.prototype.config = function(options) {
       if (options) {
-        this.options = $.extend(this.options, options);
+        this.options = jQuery.extend(this.options, options);
       }
       return this.options;
     };
 
-    JqueryDebug.prototype.autodetectDebugModeAndSet = function() {
+    JqueryDebug.prototype._autodetectDebugModeAndSet = function() {
       var ref, ref1;
       if ((ref = jQuery.url("?" + this.options.urlParam)) === '0' || ref === '1' || ref === 'true' || ref === 'false') {
         this.setDebugMode(jQuery.url("?" + this.options.urlParam));
@@ -75,13 +79,13 @@
 
     JqueryDebug.prototype.isDevelopment = function() {
       var host, i, len, ref;
-      if (this.href.indexOf('file://') > -1) {
+      if (this._href.indexOf('file://') > -1) {
         return true;
       }
       ref = this.options.developmentHosts;
       for (i = 0, len = ref.length; i < len; i++) {
         host = ref[i];
-        if (this.href.indexOf(host) > -1) {
+        if (this._href.indexOf(host) > -1) {
           return true;
         }
       }
@@ -98,7 +102,7 @@
         return;
       }
       try {
-        return this.console[type].apply(this.console, args);
+        return this._console[type].apply(this._console, args);
       } catch (_error) {
         err = _error;
         return this.alert(args.join(' '));
