@@ -1,7 +1,7 @@
 root = exports ? this
 
 class root.JQueryDebug
-  options =
+  @options =
     cookieName: 'debug'
     urlParam: 'debug'
     developmentHosts: [
@@ -11,7 +11,7 @@ class root.JQueryDebug
     ]
 
   constructor: (@options) ->
-    @config jQuery.extend(options, @options)
+    @config jQuery.extend(@options, @constructor.options)
     @_href    = window.location.href
     @_console = console
     @_autodetectDebugModeAndSet()

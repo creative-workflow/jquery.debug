@@ -5,9 +5,7 @@
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   root.JQueryDebug = (function() {
-    var options;
-
-    options = {
+    JQueryDebug.options = {
       cookieName: 'debug',
       urlParam: 'debug',
       developmentHosts: ['127.0', '192.168', 'localhost']
@@ -29,7 +27,7 @@
       this.enable = bind(this.enable, this);
       this._autodetectDebugModeAndSet = bind(this._autodetectDebugModeAndSet, this);
       this.config = bind(this.config, this);
-      this.config(jQuery.extend(options, this.options));
+      this.config(jQuery.extend(this.options, this.constructor.options));
       this._href = window.location.href;
       this._console = console;
       this._autodetectDebugModeAndSet();

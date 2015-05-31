@@ -3,6 +3,15 @@ describe 'jquery.debug', ->
     $ = jQuery
     $.cookie($.debug.options['cookieName'], '-1')
 
+  it 'can be configured', ->
+    expect($.debug.config().developmentHosts).toContain('localhost')
+    expect($.debug.config().developmentHosts).not.toContain('customhost')
+    hosts = $.debug.config().developmentHosts
+    hosts.push('customhost')
+    $.debug({developmentHosts: hosts})
+    expect($.debug.config().developmentHosts).toContain('localhost')
+    expect($.debug.config().developmentHosts).toContain('customhost')
+
   describe 'debug mode detection', ->
     for state in ['false', '0']
       ((actualState)->

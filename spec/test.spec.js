@@ -5,6 +5,18 @@
       $ = jQuery;
       return $.cookie($.debug.options['cookieName'], '-1');
     });
+    it('can be configured', function() {
+      var hosts;
+      expect($.debug.config().developmentHosts).toContain('localhost');
+      expect($.debug.config().developmentHosts).not.toContain('customhost');
+      hosts = $.debug.config().developmentHosts;
+      hosts.push('customhost');
+      $.debug({
+        developmentHosts: hosts
+      });
+      expect($.debug.config().developmentHosts).toContain('localhost');
+      return expect($.debug.config().developmentHosts).toContain('customhost');
+    });
     return describe('debug mode detection', function() {
       var fn, fn1, fn2, fn3, fn4, host, i, j, k, l, len, len1, len2, len3, len4, m, ref, ref1, ref2, ref3, ref4, state;
       ref = ['false', '0'];
