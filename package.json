@@ -1,7 +1,7 @@
 {
   "name": "jquery.debug",
   "version": "1.0.0",
-  "description": "This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the brower console.",
+  "description": "This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the browser console.",
   "main": "dist/jquery.debug.js",
   "repository": {
     "type": "git",

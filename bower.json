@@ -5,7 +5,7 @@
   "authors": [
     "Tom Hanoldt <monotom@gmail.com>"
   ],
-  "description": "This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the brower console.",
+  "description": "This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the browser console.",
   "main": "src/jquery.debug.coffee",
   "moduleType": [
     "globals"
