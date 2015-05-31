@@ -1,6 +1,6 @@
 # jquery.debug [![Build Status](https://travis-ci.org/creative-workflow/jquery.debug.svg?branch=master)](https://travis-ci.org/creative-workflow/jquery.debug) [![Code Climate](https://codeclimate.com/github/creative-workflow/jquery.debug/badges/gpa.svg)](https://codeclimate.com/github/creative-workflow/jquery.debug)
 
-This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the browser console. it is usefull if you want to log debug informations to the browser console on development hosts per default, but not in production. You can enable the debug mode in production via a url parameter.
+This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the browser console. it is useful if you want to log debug informations to the browser console on development hosts per default, but not in production. You can enable the debug mode in production via a url parameter.
 
 ## Usage
 ### javascript
