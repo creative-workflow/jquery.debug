@@ -30,17 +30,6 @@ class root.JqueryDebug
 
     @setDebugMode !@isProduction()
 
-  autodetectDebugModeAndSet: =>
-    if jQuery.url("?#{@options.urlParam}") in ['0', '1', 'true', 'false']
-      @setDebugMode jQuery.url("?#{@options.urlParam}")
-      return
-
-    if jQuery.cookie(@options.cookieName) in ['0', '1', 'true', 'false']
-      @setDebugMode jQuery.cookie(@options.cookieName)
-      return
-
-    @setDebugMode !@isProduction()
-
   enable: =>
     @setDebugMode true
 
