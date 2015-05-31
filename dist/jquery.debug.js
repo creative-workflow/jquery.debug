@@ -4,7 +4,7 @@
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-  root.JqueryDebug = (function() {
+  root.JQueryDebug = (function() {
     var options;
 
     options = {
@@ -13,7 +13,7 @@
       developmentHosts: ['127.0', '192.168', 'localhost']
     };
 
-    function JqueryDebug(options1) {
+    function JQueryDebug(options1) {
       this.options = options1;
       this.alert = bind(this.alert, this);
       this.info = bind(this.info, this);
@@ -35,14 +35,14 @@
       this._autodetectDebugModeAndSet();
     }
 
-    JqueryDebug.prototype.config = function(options) {
+    JQueryDebug.prototype.config = function(options) {
       if (options) {
         this.options = jQuery.extend(this.options, options);
       }
       return this.options;
     };
 
-    JqueryDebug.prototype._autodetectDebugModeAndSet = function() {
+    JQueryDebug.prototype._autodetectDebugModeAndSet = function() {
       var ref, ref1;
       if ((ref = jQuery.url("?" + this.options.urlParam)) === '0' || ref === '1' || ref === 'true' || ref === 'false') {
         this.setDebugMode(jQuery.url("?" + this.options.urlParam));
@@ -55,19 +55,19 @@
       return this.setDebugMode(!this.isProduction());
     };
 
-    JqueryDebug.prototype.enable = function() {
+    JQueryDebug.prototype.enable = function() {
       return this.setDebugMode(true);
     };
 
-    JqueryDebug.prototype.disable = function() {
+    JQueryDebug.prototype.disable = function() {
       return this.setDebugMode(false);
     };
 
-    JqueryDebug.prototype.isEnabled = function() {
+    JQueryDebug.prototype.isEnabled = function() {
       return this.debugEnabled;
     };
 
-    JqueryDebug.prototype.setDebugMode = function(state) {
+    JQueryDebug.prototype.setDebugMode = function(state) {
       if (state === 'true' || state === '1' || state === 1 || state === true) {
         this.debugEnabled = true;
       }
@@ -77,7 +77,7 @@
       return jQuery.cookie(this.options.cookieName, this.debugEnabled);
     };
 
-    JqueryDebug.prototype.isDevelopment = function() {
+    JQueryDebug.prototype.isDevelopment = function() {
       var host, i, len, ref;
       if (this._href.indexOf('file://') > -1) {
         return true;
@@ -92,11 +92,11 @@
       return false;
     };
 
-    JqueryDebug.prototype.isProduction = function() {
+    JQueryDebug.prototype.isProduction = function() {
       return !this.isDevelopment();
     };
 
-    JqueryDebug.prototype._log = function(type, args) {
+    JQueryDebug.prototype._log = function(type, args) {
       var err;
       if (!this.debugEnabled) {
         return;
@@ -109,34 +109,34 @@
       }
     };
 
-    JqueryDebug.prototype.log = function() {
+    JQueryDebug.prototype.log = function() {
       return this._log('log', arguments);
     };
 
-    JqueryDebug.prototype.debug = function() {
+    JQueryDebug.prototype.debug = function() {
       return this._log('debug', arguments);
     };
 
-    JqueryDebug.prototype.error = function() {
+    JQueryDebug.prototype.error = function() {
       return this._log('error', arguments);
     };
 
-    JqueryDebug.prototype.info = function() {
+    JQueryDebug.prototype.info = function() {
       return this._log('info', arguments);
     };
 
-    JqueryDebug.prototype.alert = function(msg) {
+    JQueryDebug.prototype.alert = function(msg) {
       if (this.debugEnabled) {
         return alert(msg);
       }
     };
 
-    return JqueryDebug;
+    return JQueryDebug;
 
   })();
 
   if (typeof jQuery !== 'undefined') {
-    instance = new JqueryDebug();
+    instance = new JQueryDebug();
     $ = jQuery;
     $.extend({
       debug: function() {

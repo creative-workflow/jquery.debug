@@ -95,7 +95,6 @@ Logs a info massage to the browser console if in debug mode.
 #### $.debug.alert (msg)
 Alerts a massage if in debug mode.
 
-
 ### Dependencies
   * [jquery](https://jquery.com)
   * [jquery-cookie](https://github.com/carhartl/jquery-cookie)

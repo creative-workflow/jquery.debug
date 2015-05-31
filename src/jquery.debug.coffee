@@ -1,6 +1,6 @@
 root = exports ? this
 
-class root.JqueryDebug
+class root.JQueryDebug
   options =
     cookieName: 'debug'
     urlParam: 'debug'
@@ -69,7 +69,7 @@ class root.JqueryDebug
   alert: (msg) => alert msg if @debugEnabled
 
 if typeof jQuery != 'undefined'
-  instance = new JqueryDebug()
+  instance = new JQueryDebug()
   $        = jQuery
   $.extend debug: ->
     return instance.isEnabled() unless arguments.length
