@@ -13,7 +13,7 @@ This plugin helps managing debugging in javascript. It looks for a url param or 
     //sets 192.123.* hosts as development hosts
     $.debug({developmentHosts: ['192.123.']})
 
-It also exposes the class `JqueryDebug` for manual instantiating.
+It also exposes the class `JQueryDebug` for manual instantiating.
 
 ### coffee script
     $.debug true
@@ -25,7 +25,7 @@ It also exposes the class `JqueryDebug` for manual instantiating.
     #adds 192.123.* hosts to development hosts
     $.debug developmentHosts: [ '192.123.' ]
 
-It also exposes the class `JqueryDebug` for manual instantiating and extending.
+It also exposes the class `JQueryDebug` for manual instantiating and extending.
 
 ### Parameter
 #### developmentHosts
