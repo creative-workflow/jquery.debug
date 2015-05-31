@@ -10,7 +10,7 @@ This plugin helps managing debugging in javascript. It looks for a url param or 
     $.debug(false);
     $.debug.log('msg'); //doesnt print to console
 
-    //adds 192.123.* hosts to development hosts
+    //sets 192.123.* hosts as development hosts
     $.debug({developmentHosts: ['192.123.']})
 
 It also exposes the class `JqueryDebug` for manual instantiating.
