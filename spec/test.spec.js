@@ -3,7 +3,7 @@
     beforeEach(function() {
       var $;
       $ = jQuery;
-      return $.cookie($.debug.options['cookieName'], '-1');
+      return Cookies.set($.debug.options['cookieName'], '-1');
     });
     it('can be configured', function() {
       var hosts;
@@ -46,7 +46,7 @@
       ref2 = ['false', '0'];
       fn2 = function(actualState) {
         return it("recognizes cookie param " + actualState, function() {
-          spyOn($, "cookie").and.returnValue("" + actualState);
+          spyOn(Cookies, "get").and.returnValue("" + actualState);
           $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).not.toBeTruthy();
         });
@@ -58,7 +58,7 @@
       ref3 = ['true', '1'];
       fn3 = function(actualState) {
         return it("recognizes cookie param " + actualState, function() {
-          spyOn($, "cookie").and.returnValue("" + actualState);
+          spyOn(Cookies, "get").and.returnValue("" + actualState);
           $.debug._autodetectDebugModeAndSet();
           return expect($.debug()).toBeTruthy();
         });

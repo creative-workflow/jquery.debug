@@ -1,7 +1,7 @@
 describe 'jquery.debug', ->
   beforeEach ->
     $ = jQuery
-    $.cookie($.debug.options['cookieName'], '-1')
+    Cookies.set($.debug.options['cookieName'], '-1')
 
   it 'can be configured', ->
     expect($.debug.config().developmentHosts).toContain('localhost')
@@ -32,7 +32,7 @@ describe 'jquery.debug', ->
     for state in ['false', '0']
       ((actualState)->
         it "recognizes cookie param #{actualState}", ->
-          spyOn($, "cookie").and.returnValue "#{actualState}"
+          spyOn(Cookies, "get").and.returnValue "#{actualState}"
           $.debug._autodetectDebugModeAndSet()
           expect($.debug()).not.toBeTruthy()
       ) state
@@ -40,7 +40,7 @@ describe 'jquery.debug', ->
     for state in ['true', '1']
       ((actualState)->
         it "recognizes cookie param #{actualState}", ->
-          spyOn($, "cookie").and.returnValue "#{actualState}"
+          spyOn(Cookies, "get").and.returnValue "#{actualState}"
           $.debug._autodetectDebugModeAndSet()
           expect($.debug()).toBeTruthy()
       ) state

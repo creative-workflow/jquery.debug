@@ -46,8 +46,8 @@
         this.setDebugMode(jQuery.url("?" + this.options.urlParam));
         return;
       }
-      if ((ref1 = jQuery.cookie(this.options.cookieName)) === '0' || ref1 === '1' || ref1 === 'true' || ref1 === 'false') {
-        this.setDebugMode(jQuery.cookie(this.options.cookieName));
+      if ((ref1 = Cookies.get(this.options.cookieName)) === '0' || ref1 === '1' || ref1 === 'true' || ref1 === 'false') {
+        this.setDebugMode(Cookies.get(this.options.cookieName));
         return;
       }
       return this.setDebugMode(!this.isProduction());
@@ -72,7 +72,7 @@
       if (state === 'false' || state === '0' || state === 0 || state === false) {
         this.debugEnabled = false;
       }
-      return jQuery.cookie(this.options.cookieName, this.debugEnabled);
+      return Cookies.set(this.options.cookieName, this.debugEnabled);
     };
 
     JQueryDebug.prototype.isDevelopment = function() {

@@ -25,8 +25,8 @@ class root.JQueryDebug
       @setDebugMode jQuery.url("?#{@options.urlParam}")
       return
 
-    if jQuery.cookie(@options.cookieName) in ['0', '1', 'true', 'false']
-      @setDebugMode jQuery.cookie(@options.cookieName)
+    if Cookies.get(@options.cookieName) in ['0', '1', 'true', 'false']
+      @setDebugMode Cookies.get(@options.cookieName)
       return
 
     @setDebugMode !@isProduction()
@@ -43,7 +43,7 @@ class root.JQueryDebug
   setDebugMode: (state) =>
     @debugEnabled = true  if state in ['true', '1', 1, true]
     @debugEnabled = false if state in ['false', '0', 0, false]
-    jQuery.cookie(@options.cookieName, @debugEnabled)
+    Cookies.set(@options.cookieName, @debugEnabled)
 
   isDevelopment: =>
     return true if @_href.indexOf('file://') > -1
