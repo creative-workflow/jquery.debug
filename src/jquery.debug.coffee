@@ -1,5 +1,9 @@
 root = exports ? this
 
+# fix ie9 issue
+if !window.console then window.console = {}
+if !window.console.log then window.console.log = ->
+
 class root.JQueryDebug
   @options =
     cookieName: 'debug'
@@ -59,7 +63,7 @@ class root.JQueryDebug
     try
       @_console[type].apply @_console, args
     catch err
-      @alert args.join(' ')
+      # do nothing if we cannot log
 
   log:   => @_log('log',   arguments)
   debug: => @_log('debug', arguments)

@@ -4,6 +4,14 @@
 
   root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
+  if (!window.console) {
+    window.console = {};
+  }
+
+  if (!window.console.log) {
+    window.console.log = function() {};
+  }
+
   root.JQueryDebug = (function() {
     JQueryDebug.options = {
       cookieName: 'debug',
@@ -103,7 +111,6 @@
         return this._console[type].apply(this._console, args);
       } catch (_error) {
         err = _error;
-        return this.alert(args.join(' '));
       }
     };
 
