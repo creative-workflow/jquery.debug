@@ -2,6 +2,9 @@
 
 This plugin helps managing debugging in javascript. It looks for a url param or cookie and prints conditional to the browser console. it is useful if you want to log debug informations to the browser console on development hosts per default, but not in production. You can enable the debug mode in production via a url parameter.
 
+## Installation
+    bower install jquery.debug
+
 ## Usage
 ### javascript
     $.debug(true);
@@ -104,12 +107,11 @@ Alerts a massage if in debug mode.
   * https://github.com/creative-workflow/jquery.debug
   * https://travis-ci.org/creative-workflow/jquery.debug
   * https://codeclimate.com/github/creative-workflow/jquery.debug
-  * https://www.npmjs.com/package/jquery.debug
   * http://bower.io/search/?q=jquery.debug
 
 ### Authors
 
-  [Tom Hanoldt](https://github.com/monotom)
+  [Tom Hanoldt](https://www.tomhanoldt.info)
 
 # Contributing
 
