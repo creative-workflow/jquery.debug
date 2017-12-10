@@ -95,6 +95,9 @@ Logs a error massage to the browser console if in debug mode.
 #### $.debug.info (msg)
 Logs a info massage to the browser console if in debug mode.
 
+#### $.debug.warn (msg)
+Logs a warning massage to the browser console if in debug mode.
+
 #### $.debug.alert (msg)
 Alerts a massage if in debug mode.
 

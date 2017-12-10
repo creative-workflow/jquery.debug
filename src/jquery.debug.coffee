@@ -69,6 +69,7 @@ class root.JQueryDebug
   debug: => @_log('debug', arguments)
   error: => @_log('error', arguments)
   info:  => @_log('info',  arguments)
+  warn:  => @_log('warn',  arguments)
 
   alert: (msg) => alert msg if @debugEnabled
 

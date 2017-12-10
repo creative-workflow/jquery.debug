@@ -22,6 +22,7 @@
     function JQueryDebug(options1) {
       this.options = options1;
       this.alert = bind(this.alert, this);
+      this.warn = bind(this.warn, this);
       this.info = bind(this.info, this);
       this.error = bind(this.error, this);
       this.debug = bind(this.debug, this);
@@ -128,6 +129,10 @@
 
     JQueryDebug.prototype.info = function() {
       return this._log('info', arguments);
+    };
+
+    JQueryDebug.prototype.warn = function() {
+      return this._log('warn', arguments);
     };
 
     JQueryDebug.prototype.alert = function(msg) {
